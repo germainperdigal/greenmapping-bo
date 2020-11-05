@@ -1,0 +1,47 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-success card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">receipt_long</i>
+                        </div>
+                        <p class="card-category">Billing plan</p>
+                        <h3 class="card-title">{{ user?.billing.amount | number }} €<sup>/year</sup> ({{ user?.billing.amount/12 | number }}€<sup>/month</sup>)</h3>
+                    </div>
+                    <div class="card-body">
+                        <label for="">Choose an association to donate</label>
+                        <p style="font-weight: bold;">Current association : {{ user?.association ? user.association : 'Define one before 31/12' }}</p>
+                        <mat-form-field appearance="fill">
+                            <mat-select (selectionChange)="switchAssoc($event)">
+                              <mat-option value="WWF">
+                                WWF
+                              </mat-option>
+                              <mat-option value="WNO">
+                                World Nature Organization
+                              </mat-option>
+                              <mat-option value="OMPE">
+                                OMPE
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="card card-stats">
+                    <div class="card-header card-header-success card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">update</i>
+                        </div>
+                        <p class="card-category">Next billing</p>
+                        <h3 class="card-title">{{ user?.billing.end | date }}</h3>
+                        <a href="" mat-raised-button class="btn btn-danger btn-sm">Cancel my subscription</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

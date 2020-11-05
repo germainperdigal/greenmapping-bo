@@ -1,0 +1,72 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header row card-header-success">
+                        <div class="col-12">
+                            <h4 class="card-title ">Ideas pinned in your city</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <input class="float-right" style="display: block;" type="range" step="10" min="30" max="100" value="30" (input)="valueChanged($event.target.value)">
+                        <br/>
+                        <div style="width: 100%; text-align: right;" class="my-2">{{ range }}km radius</div>
+                        <div class="table-responsive">
+                            <table *ngIf="ideas" class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        ID
+                                    </th>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>
+                                        Comment
+                                    </th>
+                                    <th>
+                                        Address
+                                    </th>
+                                    <th>
+                                        ❤️
+                                    </th>
+                                    <th>
+                                        Utilities
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    <ng-container *ngFor="let idea of ideas; let i = index">
+                                        <tr>
+                                            <td>
+                                                {{ i+1 }}
+                                            </td>
+                                            <td style="max-width: 10vw;">
+                                                {{ idea.user.fname }} {{ idea.user.lname }}
+                                            </td>
+                                            <td>
+                                                {{ idea.comment }}
+                                            </td>
+                                            <td>
+                                                <span *ngIf="idea.address">{{ idea.address }}</span>
+                                                <div class="on-load" *ngIf="!idea.address">
+                                                    <div class="spinner"></div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                {{ idea.likes.length }}
+                                            </td>
+                                            <td>
+                                                <a href="mailto:{{ idea.user.email }}" mat-raised-button class="btn btn-primary btn-sm">Send a message</a>
+                                                <button (click)="deletePin(idea._id)" mat-raised-button class="btn btn-danger btn-sm">Delete</button>
+                                            </td>
+                                        </tr>
+                                    </ng-container>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

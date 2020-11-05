@@ -1,0 +1,21 @@
+<div class="logo">
+    <a href="/" class="simple-text">
+        <img src="assets/img/GREENMAPPING.png" style="width: 70%;" alt="">
+    </a>
+</div>
+<div class="sidebar-wrapper">
+    <ul class="nav">
+        <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
+            <a class="nav-link" [routerLink]="[menuItem.path]">
+                <i class="material-icons">{{menuItem.icon}}</i>
+                <p>{{menuItem.title}}</p>
+            </a>
+        </li>
+        <li routerLinkActive="active" (click)="logout()" class="nav-item">
+            <a class="nav-link">
+                <i class="material-icons">power_settings_new</i>
+                <p>Log out</p>
+            </a>
+        </li>
+    </ul>
+</div>

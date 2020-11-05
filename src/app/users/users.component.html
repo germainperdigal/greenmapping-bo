@@ -1,0 +1,56 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-success">
+                        <h4 class="card-title ">Liste of users localized in your city</h4>
+                    </div>
+                    <div class="card-body">
+                        <input class="float-right" style="display: block;" type="range" step="10" min="30" max="100" value="30" (input)="valueChanged($event.target.value)">
+                        <br/>
+                        <div style="width: 100%; text-align: right;" class="my-2">{{ range }}km radius</div>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                    <th>
+                                        ID
+                                    </th>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>
+                                        Email address
+                                    </th>
+                                    <th>
+                                        Utilities
+                                    </th>
+                                </thead>
+                                <tbody *ngIf="users">
+                                    <tr *ngFor="let user of users | paginate: { itemsPerPage: 10, currentPage: p }; index as i">
+                                        <td *ngIf="user" class="text-xs" style="width: 4vw;">
+                                            {{ i+1 }}
+                                        </td>
+                                        <td *ngIf="users">
+                                            {{ user.fname }} {{ user.lname | uppercase }}
+
+                                        </td>
+                                        <td *ngIf="users">
+                                            {{ user.email }}
+                                        </td>
+                                        <td class="text-primary">
+                                            <a href="mailto:{{ user.email }}" mat-raised-button class="btn btn-primary btn-sm">Send a message</a>
+                                            <button mat-raised-button (click)="delUser(user._id)" class="btn btn-danger btn-sm">Delete profile</button>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                            <pagination-controls previousLabel="Previous" nextLabel="Next" (pageChange)="p = $event"></pagination-controls>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
